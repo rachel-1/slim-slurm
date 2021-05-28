@@ -11,8 +11,15 @@ It is called Slim Slurm as a play on the real jobs scheduler [Slurm](https://slu
 0. **Install dependencies.** Assuming you already have Python (and Git), just do `pip install knockknock`
 
 1. **Configure job directory.** Set `JOBS_DIR` to be the folder you want Slim Slurm to work out of.
+You'll likely want to add something like the following to your `.bashrc`:
+```
+# Create a simple jobs directory for the start_job.bash script
+export JOBS_DIR=/juno/u/rachel0/jobs
+alias add_job="bash ~/slim-slurm/add_job.bash"
+alias run_jobs="bash ~/slim-slurm/run_jobs.bash"        
+```
 
-2. **Set up notifications.** Notifications are currently via Discord, so you'll need to set the `DISCORD_WEBHOOK_URL`. See [the Discord documentation](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) for info on how to set up the Discord side. I just have a personal server with a channel for job notifications. However, [`knockknock`](https://pypi.org/project/knockknock/) is a wonderful package with many other ways of doing notifications.
+2. **Set up notifications.** Notifications are currently via Discord, so you'll need to set the `DISCORD_WEBHOOK_URL` environment variable. See [the Discord documentation](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) for info on how to set up the Discord side. I just have a personal server with a channel for job notifications. However, [`knockknock`](https://pypi.org/project/knockknock/) is a wonderful package with many other ways of doing notifications.
 
 3. **Start the jobs runner.** Run `./run_jobs.bash &` to start a background process which will check your jobs folder for new files indicating jobs to be run. 
 
