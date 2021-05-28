@@ -8,8 +8,12 @@ It is called Slim Slurm as a play on the real jobs scheduler [Slurm](https://slu
 
 ## Set-Up
 
-0. **Install dependencies.** Assuming you already have Python (and Git), just do `pip install knockknock`
-
+0. **Install dependencies.** 
+I'm going to assuming you already have Python and Git.
+```
+sudo apt-get install inotify-tools
+pip install knockknock
+```
 1. **Configure job directory.** Set `JOBS_DIR` to be the folder you want Slim Slurm to work out of.
 You'll likely want to add something like the following to your `.bashrc`:
 ```
