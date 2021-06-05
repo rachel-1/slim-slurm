@@ -34,6 +34,12 @@ read -p "Command: " COMMAND
 
 # Save the current code state.
 if [ $REPO_NAME ]; then
+
+    # Print where we're at, just for clarity.
+    git status
+
+    # Save the current branch.
+    BRANCH=$(git branch --show-current)
     
     # Save our local changes (if needed).
     git stash save -- "$JOB_NAME"
@@ -50,8 +56,11 @@ if [ $REPO_NAME ]; then
     SHA=$(git rev-parse HEAD)
 
     # Go back to previous state.
-    git checkout master
-    git stash list | grep $JOB_NAME && git stash pop --quiet && echo "Reapplying stashed changes to master"
+    git checkout $BRANCH
+    git stash list | grep $JOB_NAME && git stash pop --quiet && echo "Reapplying stashed changes"
+
+    # Print where we're at, just for clarity.
+    git status
     
 else
     # If we aren't in a git repo, we put a placeholder.
