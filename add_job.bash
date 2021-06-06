@@ -35,7 +35,7 @@ read -p "Job name (no spaces): " JOB_NAME
 if [ ! -d "$DEFAULT_CMD" ]; then
     echo $DEFAULT_CMD
 fi
-exit
+
 # Read in the user's current command.
 read -p "Command: " COMMAND
 
