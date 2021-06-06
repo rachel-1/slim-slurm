@@ -28,8 +28,15 @@ if [ ! -d "$WORK_TREES/$REPO_NAME" ]; then
     git worktree add --detach "$WORK_TREES/$REPO_NAME"
 fi
 
-# Get the information for the job.
+# Get the job name.
 read -p "Job name (no spaces): " JOB_NAME
+
+# Print the user's default command to be copy/pasted (if it exists).
+if [ ! -d "$DEFAULT_CMD" ]; then
+    echo $DEFAULT_CMD
+fi
+exit
+# Read in the user's current command.
 read -p "Command: " COMMAND
 
 # Save the current code state.
