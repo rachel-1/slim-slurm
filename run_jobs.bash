@@ -26,6 +26,12 @@ TO_RUN="$JOBS_DIR/to_run"
 RUNNING="$JOBS_DIR/running"
 WORK_TREES="$JOBS_DIR/work_trees"
 
+# Create the folders if they don't exist yet.
+[ ! -d "$JOBS_DIR" ] && mkdir $JOBS_DIR
+[ ! -d "$TO_RUN" ] && mkdir $TO_RUN
+[ ! -d "$RUNNING" ] && mkdir $RUNNING
+[ ! -d "$WORK_TREES" ] && mkdir $WORK_TREES
+
 processJobs(){
     # Force the wildcard * to return empty if no matches.
     shopt -s nullglob
