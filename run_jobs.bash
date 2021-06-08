@@ -73,11 +73,16 @@ processJobs(){
         START_TIME=$(date +"%m-%d-%Y %r")
         echo "Start: $START_TIME" >> $NEW_JOB_PATH
 
-        # Run the job and log its output. We use eval to allow chaining of
-        # commands. Note that we assume this script was run with the proper
-        # conda environment etc. for all of the commands.
+        # Print the exact command used when creating the job.
         echo "Now running: "$CMD
-        eval knockknock discord --webhook-url $DISCORD_WEBHOOK_URL $CMD > $NEW_JOB_PATH.log
+
+        # Add notification for when the job starts/stops.
+        CMD="knockknock discord --webhook-url $DISCORD_WEBHOOK_URL $CMD"
+
+        # Run the job and log its output (both stdout and stderr). We use eval
+        # to allow chaining of commands. Note that we assume this script was run
+        # with the proper conda environment etc. for all of the commands.
+        eval $CMD |& tee $NEW_JOB_PATH.log
 
         # Log the end time.
         END_TIME=$(date +"%m-%d-%Y %r")
